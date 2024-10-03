@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class Spawn : MonoBehaviour
 {
-    public GameObject tuberia;
+    public GameObject tuberias;
 
     public float spawnTime = 2f;
     private float timer = 0f;
 
-    public float height = 2f;
+    public float height = 15f;
     // Start is called before the first frame update
     void Start()
     {
@@ -34,6 +34,6 @@ public class Spawn : MonoBehaviour
     void Spawner()
     {
         float randomHeight = Random.Range(-height, height);
-        Instantiate(tuberia, new Vector3(transform.position.x, randomHeight, transform.position.z), transform.rotation);
+        Instantiate(tuberias, new Vector3(transform.position.x, randomHeight, transform.position.z), transform.rotation);
     }
 }
