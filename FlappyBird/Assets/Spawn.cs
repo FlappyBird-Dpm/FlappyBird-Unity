@@ -7,7 +7,7 @@ public class Spawn : MonoBehaviour
     public GameObject tuberia;
 
     public float spawnTime = 2f;
-    public float timer = 0f;
+    private float timer = 0f;
 
     public float height = 2f;
     // Start is called before the first frame update

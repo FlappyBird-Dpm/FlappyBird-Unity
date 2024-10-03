@@ -3,13 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Detector : MonoBehaviour
-{
-    public GameObject bird;
-    public Logicmanager logicmanager;
-    // Start is called before the first frame update
+{ 
+    public Logicmanager logicManager;
     void Start()
     {
-        
+        logicManager = GameObject.FindGameObjectWithTag("Logic").GetComponent<Logicmanager>();
     }
 
     // Update is called once per frame
@@ -20,9 +18,9 @@ public class Detector : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject == bird)
+        if (collision.gameObject.tag == "Bird")
         {
-            logicmanager.playerScore = logicmanager.playerScore + 1;
+            logicManager.AddScrore();
         }
     }
 }
