@@ -4,32 +4,30 @@ using UnityEngine;
 
 public class Bird : MonoBehaviour
 {
-
     private Animator movimiento;
     public Rigidbody2D rbody;
     public float jumpForce = 2;
     public Logicmanager logicManager;
     bool birdIsDead = false;
-    public float rotationSpeed = 15;
-    // Start is called before the first frame update
+    public float rotationSpeed = 15f; // Velocidad de rotación
+    public float maxRotation = 45f;   // Rotación máxima permitida
+    public float minRotation = -90f;  // Rotación mínima permitida
+
     void Start()
     {
-
         logicManager = GameObject.FindGameObjectWithTag("Logic").GetComponent<Logicmanager>();
     }
 
-    // Update is called once per frame
     void Update()
-    {   
-
-        if(Input.GetKeyDown(KeyCode.Space) && !birdIsDead)
+    {
+        if (Input.GetKeyDown(KeyCode.Space) && !birdIsDead)
         {
             rbody.velocity = Vector2.up * jumpForce;
-
         }
-        transform.rotation = Quaternion.Euler(0,0,rbody.velocity.y*rotationSpeed*Time.deltaTime*100);
-        
-       
+
+        // Aplicar rotación dependiendo de la velocidad vertical
+        float rotationAngle = Mathf.Clamp(rbody.velocity.y * rotationSpeed, minRotation, maxRotation);
+        transform.rotation = Quaternion.Euler(0, 0, rotationAngle);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
